@@ -11,6 +11,7 @@ En JavaScript, on peut sélectionner des éléments HTML avec différentes méth
 - `document.querySelectorAll("div")` : sélectionne tous les éléments correspondants sous forme de `NodeList`.
 - `document.getElementsByClassName("classe")` : sélectionne tous les éléments d'une classe (HTMLCollection).
 - `document.getElementsByTagName("tag")` : sélectionne tous les éléments d'un type donné.
+- `element.innerHTML = '' ` : change le contenu HTML.
 
 Exemple :
 ```js
@@ -41,12 +42,19 @@ bouton.addEventListener("click", () => {
 
 ### Objectif
 L'objectif est de récupérer et afficher des données depuis une API en utilisant fetch, ainsi que de permettre des interactions via des boutons et des formulaires.
+https://jsonplaceholder.typicode.com/
 
 ### Étapes
 #### Récupération des données
 
 - À l'aide de fetch, récupérer des posts, des utilisateurs et des tâches depuis JSONPlaceholder.
 - Afficher ces données dans des div spécifiques en les structurant sous forme de cartes.
+
+```js
+fetch('https://jsonplaceholder.typicode.com/posts')
+      .then(response => response.json())
+      .then(json => console.log(json))
+```
 
 #### Affichage des données
 
@@ -55,6 +63,18 @@ L'objectif est de récupérer et afficher des données depuis une API en utilisa
 
 #### Ajout d'un post
 
+
+```js
+fetch('https://jsonplaceholder.typicode.com/posts',{
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(newPost)
+})
+      .then(response => response.json())
+      .then(json => console.log(json))
+```
 - Compléter un formulaire avec title, body et userId.
 - Envoyer ces données en POST avec fetch.
 - Afficher la réponse retournée.
